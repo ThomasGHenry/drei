@@ -12,7 +12,14 @@ export default {
   component: Line,
 }
 
-const points = GeometryUtils.hilbert3D(new Vector3(0), 5).map((p) => [p.x, p.y, p.z]) as [number, number, number][]
+// const points = GeometryUtils.hilbert3D(new Vector3(0), 5).map((p) => [p.x, p.y, p.z]) as [number, number, number][]
+const points = [
+  [0, 0, 0],
+  [0, 1, 0],
+  [1, 1, 0],
+  [1, 0, 0],
+  [0, 0, 0],
+]
 
 const colors = new Array(points.length).fill(0).map(() => [Math.random(), Math.random(), Math.random()]) as [
   number,
@@ -25,7 +32,7 @@ export function BasicLine() {
     <>
       <Line
         points={points}
-        color={color('color', 'red')}
+        color={color('color', 'blue')}
         lineWidth={number('lineWidth', 3)}
         dashed={boolean('dashed', false)}
       />
@@ -36,7 +43,6 @@ export function BasicLine() {
 BasicLine.storyName = 'Basic'
 
 BasicLine.decorators = [
-  withKnobs,
   (storyFn) => (
     <Setup controls={false} cameraPosition={new Vector3(0, 0, 17)}>
       {storyFn()}
